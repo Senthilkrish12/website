@@ -1,204 +1,501 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Krishna’s Kitchen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krish Store - Your Ultimate E-commerce</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background-color: #fff;
-    }
-
-    header {
-      background-image: url('bac.avif');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      color: rgb(252, 252, 252);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      color: #fff;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      text-align: center;
-      text-shadow: 2px 2px 10px black;
+      justify-content: flex-start;
+      padding-bottom: 60px;
     }
 
-
-    header h1 {
-      font-size: 4rem;
-      margin-bottom: 10px;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(15px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    header p {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    header button {
-      padding: 15px 30px;
-      font-size: 1rem;
-      background-color: #d4af37;
-      color: white;
-      border: none;
-      border-radius: 8px;
+    nav .logo {
+      font-weight: 900;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: #fff;
       cursor: pointer;
-      transition: 0.3s;
+      user-select: none;
     }
 
-    header button:hover {
-      background-color: #b88b22;
-    }
-
-    section {
-      padding: 50px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
+    nav input[type="search"] {
+      width: 300px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      transition: width 0.3s ease;
       color: #333;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+    nav input[type="search"]:focus {
+      width: 400px;
     }
 
-    .card {
-      background-color: #f9f9f9;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .card h3 {
-      margin: 15px 0 10px;
-    }
-
-    .card p {
-      padding: 0 10px 20px;
-      color: #555;
-    }
-
-    .contact {
-      background-color: #222;
+    nav .nav-buttons button {
+      margin-left: 20px;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
       color: white;
-      text-align: center;
-      padding: 40px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    .contact h2 {
-      color: #fff;
+    nav .nav-buttons button:hover {
+      background: #e03e54;
     }
 
-    footer {
-      background-color: #111;
-      color: #aaa;
+    .hero {
       text-align: center;
+      padding: 60px 20px 30px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      letter-spacing: 3px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #ddd;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 35px;
+      max-width: 1200px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+    }
+
+    .product-card {
+      background: linear-gradient(145deg, #f0f0f3, #cacde0);
+      border-radius: 20px;
+      box-shadow:
+        10px 10px 30px #babecc,
+        -10px -10px 30px #ffffff;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s ease;
+      perspective: 1000px;
+      position: relative;
+      overflow: hidden;
+      color: #333;
+    }
+
+    .product-card:hover {
+      transform: rotateY(15deg) rotateX(10deg) scale(1.07);
+      box-shadow:
+        15px 15px 40px #a1a6b7,
+        -15px -15px 40px #f7f9ff;
+      z-index: 2;
+    }
+
+    .product-image {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: translateZ(40px) scale(1.1);
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 12px 0 6px;
+      letter-spacing: 0.7px;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      color: #e63946;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .btn-buy {
+      background: #1d3557;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 35px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(29,53,87,0.7);
+      transition: background 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      outline-offset: 3px;
+    }
+
+    .btn-buy::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255,255,255,0.3);
+      transform: skewX(-25deg);
+      transition: left 0.5s ease;
+      z-index: 1;
+    }
+
+    .btn-buy:hover::before {
+      left: 125%;
+    }
+
+    .btn-buy:hover {
+      background: #457b9d;
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(69,123,157,0.9);
+    }
+
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
       padding: 20px;
-      font-size: 14px;
     }
 
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      color: #333;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 90%;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      animation: fadeInScale 0.3s ease forwards;
+    }
+
+    @keyframes fadeInScale {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+    }
+
+    .modal-content p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .modal-content .price {
+      font-size: 1.3rem;
+      color: #e63946;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      background: #ff416c;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+      padding: 15px 50px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255,75,43,0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-right: 15px;
+    }
+
+    .modal-content button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(255,75,43,0.9);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      font-weight: 900;
+      color: #666;
+      user-select: none;
+    }
+
+    .modal-close:hover {
+      color: #ff416c;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      header h1 {
+      nav {
+        padding: 15px 20px;
+      }
+
+      nav input[type="search"] {
+        width: 180px;
+      }
+
+      nav input[type="search"]:focus {
+        width: 220px;
+      }
+
+      .hero h1 {
         font-size: 2.5rem;
       }
-      header p {
-        font-size: 1.2rem;
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+        gap: 25px;
+        padding: 0 10px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Hero Section -->
-  <header>
-    <h1>Welcome to Krishna’s Kitchen</h1>
-    <p>Pure Veg | Taste The Treditional | Book Your Table Now 💙</p>
-    <button onclick="alert('Online Booking will be available soon 💙')">Book a Table</button>
-  </header>
-
-  <!-- Special Dishes -->
-  <section>
-    <h2>🍛 Our Special Dishes</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="pannir.jpg" alt="Dish 1">
-        <h3>Paneer Tikka</h3>
-        <p>Spicy, smoky, and perfectly grilled cottage cheese with masala.</p>
-      </div>
-      <div class="card">
-        <img src="dosa.jpg" alt="Dish 2">
-        <h3>Masala Dosa</h3>
-        <p>Traditional crispy dosa served with flavorful potato filling.</p>
-      </div>
-      <div class="card">
-        <img src="gulab.jpg" alt="Dish 3">
-        <h3>Gulab Jamun</h3>
-        <p>Soft, warm, and juicy sweet balls in sugar syrup.</p>
-      </div>
+  <nav>
+    <div class="logo">Krishna Store</div>
+    <input type="search" id="searchBox" placeholder="Search products..." />
+    <div class="nav-buttons">
+      <button onclick="alert('Special Offers Coming Soon!')">Special Offers</button>
+      <button onclick="alert('Best Deals Coming Soon!')">Best Deals</button>
     </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Discover the Future of Shopping</h1>
+    <p>Experience the ultimate store with premium products and smooth interactions. Shop smart, shop stylish!</p>
   </section>
 
-  <!-- Best Chef -->
-  <section>
-    <h2>👨‍🍳 Our Master Chef</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="chef2.jpg" height="auto" alt="Our Best Chef" />
-        <h3>Chef Ram Krishna</h3>
-        <p>With 20+ years of experience, Chef Ram Krishna brings devotion and taste together in every meal.</p>
-      </div>
+  <section class="product-grid" id="productGrid">
+    <!-- Products injected by JS -->
+  </section>
+
+  <!-- Product Detail Modal -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <img src="" alt="Product Image" id="modalImage" />
+      <h2 id="modalTitle">Product Title</h2>
+      <p id="modalDescription">Product description goes here.</p>
+      <div class="price" id="modalPrice">₹0.00</div>
+      <button onclick="alert('Added to Cart!')">Add to Cart</button>
+      <button onclick="closeModal()">Close</button>
     </div>
-  </section>
+  </div>
 
-  <!-- Restaurant Views -->
-  <section>
-    <h2>🌆 Best Views from Our Restaurant</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="night.jpg" alt="View 1">
-        <h3>Cozy Night Vibes</h3>
-        <p>Enjoy your dinner with a peaceful and romantic ambiance.</p>
-      </div>
-      <div class="card">
-        <img src="open.jpg" alt="View 2">
-        <h3>Open-Air Dining</h3>
-        <p>Experience divine food under the stars with greenery around you.</p>
-      </div>
-    </div>
-  </section>
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Infinity LED Light",
+        price: 799,
+        description: "Create infinite magic with this 3D infinity LED light. Perfect for room decoration and gifting.",
+        image: "colorful-led-infinity-mirror.webp"
+      },
+      {
+        id: 2,
+        name: "Moon Light Lamp",
+        price: 1299,
+        description: "Soft moonlight at your desk. Realistic moon surface texture with adjustable brightness.",
+        image: "images.jpg"
+      },
+      {
+        id: 3,
+        name: "Neon Wall Sign",
+        price: 1599,
+        description: "Bright neon light for your walls. Adds modern vibes to any room.",
+        image: "AimingGuns1_99929284-9a5f-44e3-92d4-cc3b15698046_1200x.webp"
+      },
+      {
+        id: 4,
+        name: "Smart RGB Strip",
+        price: 1199,
+        description: "Customizable color-changing RGB strip lights with app control.",
+        image: "dals-backyard-steps.jpg"
+      },
+      {
+        id: 5,
+        name: "Tabletop Lava Lamp",
+        price: 1399,
+        description: "Classic lava lamp with a modern twist. Great mood lighting and fun to watch.",
+        image: "7075388600ee4d2f81d853f6b2924d97-goods.jpg"
+      },
+      {
+        id: 6,
+        name: "Crystal Desk Lamp",
+        price: 999,
+        description: "Elegant crystal base with a warm white LED top. Perfect for cozy nights.",
+        image: "61j8yjIQV2L.jpg"
+      },
+      {
+        id: 7,
+        name: "Color Changing Bulb",
+        price: 649,
+        description: "Smart bulb that changes colors via your smartphone or voice assistant.",
+        image: "650b4cd001.jpg"
+      },
+      {
+        id: 8,
+        name: "Retro Edison Lamp",
+        price: 849,
+        description: "Vintage style Edison bulb with soft amber glow. Adds character to any space.",
+        image: "Sff8fa0dedd014c50b4d0207e24870e4fW.webp"
+      },
+      {
+        id: 9,
+        name: "LED Book Light",
+        price: 499,
+        description: "Clip-on LED light perfect for late night reading sessions.",
+        image: "61aYn3YVSQL._AC_UF894,1000_QL80_.jpg"
+      },
+      {
+        id: 10,
+        name: "Mini Projector",
+        price: 2499,
+        description: "Project beautiful patterns on your ceiling or walls with this mini projector lamp.",
+        image: "71odYKUQh2L._AC_UF1000,1000_QL80_.jpg"
+      },
+      {
+        id: 11,
+        name: "CCTV Camera",
+        price: 4999,
+        description: "Best Secutity Camera",
+        image: "securitycam_1.jpg"
+      },
+      {
+        id: 12,
+        name: "Night Lamp",
+        price: 899,
+        description: "Unique And Beautiful Design",
+        image: "PearNightLamp.webp"
+      }
+    ];
 
-  <!-- Contact -->
-  <section class="contact">
-    <h2>📞 Contact Us</h2>
-    <p>Location: Krishna Street, Divine Town, India</p>
-    <p>Phone: +91 98765 43210</p>
-    <p>Email: contact@krishnaskitchen.com</p>
-  </section>
+    const productGrid = document.getElementById('productGrid');
+    const productModal = document.getElementById('productModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalPrice = document.getElementById('modalPrice');
+    const searchBox = document.getElementById('searchBox');
+    
+    // Function to create product cards
+    function displayProducts(list) {
+      productGrid.innerHTML = '';
+      if(list.length === 0) {
+        productGrid.innerHTML = `<p style="text-align:center; font-size:1.2rem; color:#f8d7da;">No products found!</p>`;
+        return;
+      }
+      list.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="product-image" />
+          <h3 class="product-title">${product.name}</h3>
+          <p class="product-price">₹${product.price}</p>
+          <button class="btn-buy" onclick="openModal(${product.id})">View Details</button>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Krishna’s Kitchen | Designed with 💙 by your bro
-  </footer>
+    // Open modal with product details
+    function openModal(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+      modalImage.src = product.image;
+      modalImage.alt = product.name;
+      modalTitle.textContent = product.name;
+      modalDescription.textContent = product.description;
+      modalPrice.textContent = `₹${product.price}`;
+      productModal.classList.add('active');
+    }
 
+    // Close modal
+    function closeModal() {
+      productModal.classList.remove('active');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    productModal.addEventListener('click', e => {
+      if(e.target === productModal) closeModal();
+    });
+
+    // Search function
+    searchBox.addEventListener('input', () => {
+      const query = searchBox.value.toLowerCase().trim();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      displayProducts(filtered);
+    });
+
+    // Initial display
+    displayProducts(products);
+  </script>
 </body>
 </html>
