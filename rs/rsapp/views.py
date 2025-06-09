@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
-def home(request):
-    return HttpResponse("<h1>Hi Krishna, welcome to your website!</h1>")
+def res_view(request):
+    return render(request, 'res.html')

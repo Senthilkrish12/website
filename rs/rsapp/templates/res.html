@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -349,153 +350,158 @@
   </div>
 
   <script>
-    const products = [
-      {
-        id: 1,
-        name: "Infinity LED Light",
-        price: 799,
-        description: "Create infinite magic with this 3D infinity LED light. Perfect for room decoration and gifting.",
-        image: "colorful-led-infinity-mirror.webp"
-      },
-      {
-        id: 2,
-        name: "Moon Light Lamp",
-        price: 1299,
-        description: "Soft moonlight at your desk. Realistic moon surface texture with adjustable brightness.",
-        image: "images.jpg"
-      },
-      {
-        id: 3,
-        name: "Neon Wall Sign",
-        price: 1599,
-        description: "Bright neon light for your walls. Adds modern vibes to any room.",
-        image: "AimingGuns1_99929284-9a5f-44e3-92d4-cc3b15698046_1200x.webp"
-      },
-      {
-        id: 4,
-        name: "Smart RGB Strip",
-        price: 1199,
-        description: "Customizable color-changing RGB strip lights with app control.",
-        image: "dals-backyard-steps.jpg"
-      },
-      {
-        id: 5,
-        name: "Tabletop Lava Lamp",
-        price: 1399,
-        description: "Classic lava lamp with a modern twist. Great mood lighting and fun to watch.",
-        image: "7075388600ee4d2f81d853f6b2924d97-goods.jpg"
-      },
-      {
-        id: 6,
-        name: "Crystal Desk Lamp",
-        price: 999,
-        description: "Elegant crystal base with a warm white LED top. Perfect for cozy nights.",
-        image: "61j8yjIQV2L.jpg"
-      },
-      {
-        id: 7,
-        name: "Color Changing Bulb",
-        price: 649,
-        description: "Smart bulb that changes colors via your smartphone or voice assistant.",
-        image: "650b4cd001.jpg"
-      },
-      {
-        id: 8,
-        name: "Retro Edison Lamp",
-        price: 849,
-        description: "Vintage style Edison bulb with soft amber glow. Adds character to any space.",
-        image: "Sff8fa0dedd014c50b4d0207e24870e4fW.webp"
-      },
-      {
-        id: 9,
-        name: "LED Book Light",
-        price: 499,
-        description: "Clip-on LED light perfect for late night reading sessions.",
-        image: "61aYn3YVSQL._AC_UF894,1000_QL80_.jpg"
-      },
-      {
-        id: 10,
-        name: "Mini Projector",
-        price: 2499,
-        description: "Project beautiful patterns on your ceiling or walls with this mini projector lamp.",
-        image: "71odYKUQh2L._AC_UF1000,1000_QL80_.jpg"
-      },
-      {
-        id: 11,
-        name: "CCTV Camera",
-        price: 4999,
-        description: "Best Secutity Camera",
-        image: "securitycam_1.jpg"
-      },
-      {
-        id: 12,
-        name: "Night Lamp",
-        price: 899,
-        description: "Unique And Beautiful Design",
-        image: "PearNightLamp.webp"
-      }
-    ];
+    const STATIC_URL = "{% static '' %}";
+    image.src = STATIC_URL + product.image;
+</script>
 
-    const productGrid = document.getElementById('productGrid');
-    const productModal = document.getElementById('productModal');
-    const modalClose = document.getElementById('modalClose');
-    const modalImage = document.getElementById('modalImage');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalPrice = document.getElementById('modalPrice');
-    const searchBox = document.getElementById('searchBox');
-    
-    // Function to create product cards
-    function displayProducts(list) {
-      productGrid.innerHTML = '';
-      if(list.length === 0) {
-        productGrid.innerHTML = `<p style="text-align:center; font-size:1.2rem; color:#f8d7da;">No products found!</p>`;
-        return;
-      }
-      list.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.image}" alt="${product.name}" class="product-image" />
-          <h3 class="product-title">${product.name}</h3>
-          <p class="product-price">₹${product.price}</p>
-          <button class="btn-buy" onclick="openModal(${product.id})">View Details</button>
-        `;
-        productGrid.appendChild(card);
-      });
+<script>
+  const products = [
+    {
+      id: 1,
+      name: "Infinity LED Light",
+      price: 799,
+      description: "Create infinite magic with this 3D infinity LED light. Perfect for room decoration and gifting.",
+      image: "{% static 'colorful-led-infinity-mirror.webp' %}"
+    },
+    {
+      id: 2,
+      name: "Moon Light Lamp",
+      price: 1299,
+      description: "Soft moonlight at your desk. Realistic moon surface texture with adjustable brightness.",
+      image: "{% static 'images.jpg' %}"
+    },
+    {
+      id: 3,
+      name: "Neon Wall Sign",
+      price: 1599,
+      description: "Bright neon light for your walls. Adds modern vibes to any room.",
+      image: "{% static 'AimingGuns1_99929284-9a5f-44e3-92d4-cc3b15698046_1200x.webp' %}"
+    },
+    {
+      id: 4,
+      name: "Smart RGB Strip",
+      price: 1199,
+      description: "Customizable color-changing RGB strip lights with app control.",
+      image: "{% static 'dals-backyard-steps.jpg' %}"
+    },
+    {
+      id: 5,
+      name: "Tabletop Lava Lamp",
+      price: 1399,
+      description: "Classic lava lamp with a modern twist. Great mood lighting and fun to watch.",
+      image: "{% static '7075388600ee4d2f81d853f6b2924d97-goods.jpg' %}"
+    },
+    {
+      id: 6,
+      name: "Crystal Desk Lamp",
+      price: 999,
+      description: "Elegant crystal base with a warm white LED top. Perfect for cozy nights.",
+      image: "{% static '61j8yjIQV2L.jpg' %}"
+    },
+    {
+      id: 7,
+      name: "Color Changing Bulb",
+      price: 649,
+      description: "Smart bulb that changes colors via your smartphone or voice assistant.",
+      image: "{% static '650b4cd001.jpg' %}"
+    },
+    {
+      id: 8,
+      name: "Retro Edison Lamp",
+      price: 849,
+      description: "Vintage style Edison bulb with soft amber glow. Adds character to any space.",
+      image: "{% static 'Sff8fa0dedd014c50b4d0207e24870e4fW.webp' %}"
+    },
+    {
+      id: 9,
+      name: "LED Book Light",
+      price: 499,
+      description: "Clip-on LED light perfect for late night reading sessions.",
+      image: "{% static '61aYn3YVSQL._AC_UF894,1000_QL80_.jpg' %}"
+    },
+    {
+      id: 10,
+      name: "Mini Projector",
+      price: 2499,
+      description: "Project beautiful patterns on your ceiling or walls with this mini projector lamp.",
+      image: "{% static '71odYKUQh2L._AC_UF1000,1000_QL80_.jpg' %}"
+    },
+    {
+      id: 11,
+      name: "CCTV Camera",
+      price: 4999,
+      description: "Best Security Camera",
+      image: "{% static 'securitycam_1.jpg' %}"
+    },
+    {
+      id: 12,
+      name: "Night Lamp",
+      price: 899,
+      description: "Unique And Beautiful Design",
+      image: "{% static 'PearNightLamp.webp' %}"
     }
+  ];
 
-    // Open modal with product details
-    function openModal(id) {
-      const product = products.find(p => p.id === id);
-      if (!product) return;
-      modalImage.src = product.image;
-      modalImage.alt = product.name;
-      modalTitle.textContent = product.name;
-      modalDescription.textContent = product.description;
-      modalPrice.textContent = `₹${product.price}`;
-      productModal.classList.add('active');
+  const productGrid = document.getElementById('productGrid');
+  const productModal = document.getElementById('productModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDescription = document.getElementById('modalDescription');
+  const modalPrice = document.getElementById('modalPrice');
+  const searchBox = document.getElementById('searchBox');
+
+  // Function to create product cards
+  function displayProducts(list) {
+    productGrid.innerHTML = '';
+    if (list.length === 0) {
+      productGrid.innerHTML = `<p style="text-align:center; font-size:1.2rem; color:#f8d7da;">No products found!</p>`;
+      return;
     }
-
-    // Close modal
-    function closeModal() {
-      productModal.classList.remove('active');
-    }
-
-    modalClose.addEventListener('click', closeModal);
-    productModal.addEventListener('click', e => {
-      if(e.target === productModal) closeModal();
+    list.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="product-image" />
+        <h3 class="product-title">${product.name}</h3>
+        <p class="product-price">₹${product.price}</p>
+        <button class="btn-buy" onclick="openModal(${product.id})">View Details</button>
+      `;
+      productGrid.appendChild(card);
     });
+  }
 
-    // Search function
-    searchBox.addEventListener('input', () => {
-      const query = searchBox.value.toLowerCase().trim();
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-      displayProducts(filtered);
-    });
+  // Open modal with product details
+  function openModal(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    modalImage.src = product.image;
+    modalImage.alt = product.name;
+    modalTitle.textContent = product.name;
+    modalDescription.textContent = product.description;
+    modalPrice.textContent = `₹${product.price}`;
+    productModal.classList.add('active');
+  }
 
-    // Initial display
-    displayProducts(products);
-  </script>
+  // Close modal
+  function closeModal() {
+    productModal.classList.remove('active');
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  productModal.addEventListener('click', e => {
+    if (e.target === productModal) closeModal();
+  });
+
+  // Search
+  searchBox.addEventListener('input', () => {
+    const query = searchBox.value.toLowerCase().trim();
+    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+    displayProducts(filtered);
+  });
+
+  // Initial load
+  displayProducts(products);
+</script>
 </body>
 </html>
